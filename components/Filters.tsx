@@ -2,7 +2,7 @@
 
 import { formUrlQuery } from '@/sanity/utils';
 import { useState } from 'react';
-import { useSearchParams, useRouter } from 'next/navigation';
+import { useSearchParams, useRouter } from 'next/navigation'
 
 const links = ['all', 'Projects','Experience', 'Certifications'];
 
@@ -46,7 +46,7 @@ const Filters = () => {
         </button>
       ))}
     </ul>
-  );
-};
+  )
+}
 
 export default Filters;

@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     "color-scheme": "dark only",
     "twitter:image": 'https://i.ibb.co/d6TXxB2/homepage-thumbnail.jpg',
     "twitter:card": "summary_large_image",
-    "og:url": "jsmastery.pro",
+    "og:url": "Portfolio.pro",
     "og:image": 'https://i.ibb.co/d6TXxB2/homepage-thumbnail.jpg',
     "og:type": "website",
   }
