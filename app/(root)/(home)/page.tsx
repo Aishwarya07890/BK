@@ -51,7 +51,6 @@ const Page = async ({ searchParams }: Props) => {
                   title={resource.title}
                   id={resource._id}
                   image={resource.image}
-                  downloadNumber={resource.views}
                   downloadLink={resource.downloadLink}
                 />
               ))
@@ -74,7 +73,6 @@ const Page = async ({ searchParams }: Props) => {
                   title={resource.title}
                   id={resource._id}
                   image={resource.image}
-                  downloadNumber={resource.views}
                   downloadLink={resource.downloadLink}
                 />
               ))}
