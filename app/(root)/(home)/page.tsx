@@ -7,13 +7,13 @@ import { getResources, getResourcesPlaylist } from '@/sanity/actions';
 export const revalidate = 900;
 
 interface Props {
-  searchParams: { [key: string]: string | undefined };
+  searchParams?: { [key: string]: string | undefined };
 }
 
 const Page = async ({ searchParams }: Props) => {
-  const query = searchParams.query || '';
-  const category = searchParams.category || '';
-  
+  const query = searchParams?.query || '';
+  const category = searchParams?.category || '';
+
   // Fetch resources using sanitized query and category
   const resources = await getResources({
     query,
@@ -25,6 +25,7 @@ const Page = async ({ searchParams }: Props) => {
 
   return (
     <main className="flex-center paddings mx-auto w-full max-w-screen-2xl flex-col">
+      {/* Hero Section */}
       <section className="nav-padding w-full">
         <div className="flex-center relative min-h-[274px] w-full flex-col rounded-xl bg-banner bg-cover bg-center text-center">
           <p className="text-3xl font-bold text-gradient_blue-purple">
@@ -37,8 +38,10 @@ const Page = async ({ searchParams }: Props) => {
         <SearchForm />
       </section>
 
+      {/* Filters Section */}
       <Filters />
 
+      {/* Display Filtered Resources */}
       {(query || category) && (
         <section className="flex-center mt-6 w-full flex-col sm:mt-20">
           <Header query={query} category={category} />
@@ -50,7 +53,7 @@ const Page = async ({ searchParams }: Props) => {
                   key={resource._id}
                   title={resource.title}
                   id={resource._id}
-                  image={resource.image}
+                  image={resource.poster} // Assuming "poster" contains the image
                   downloadLink={resource.downloadLink}
                 />
               ))
@@ -63,7 +66,8 @@ const Page = async ({ searchParams }: Props) => {
         </section>
       )}
 
-      {resourcesPlaylist.map((item: any) => (
+      {/* Display Resource Playlists */}
+      {resourcesPlaylist?.map((item: any) => (
         <section
           key={item._id}
           className="flex-center mt-6 w-full flex-col sm:mt-20"
@@ -75,7 +79,7 @@ const Page = async ({ searchParams }: Props) => {
                 key={resource._id}
                 title={resource.title}
                 id={resource._id}
-                image={resource.image}
+                image={resource.poster} // Assuming "poster" contains the image
                 downloadLink={resource.downloadLink}
               />
             ))}

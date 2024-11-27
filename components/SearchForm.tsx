@@ -14,27 +14,17 @@ const SearchForm = () => {
   const [search, setSearch] = useState('');
 
   useEffect(() => {
-    const delayDebounceFn = setTimeout(() => {
-      const params = searchParams?.toString() || '';
-      let newUrl = '';
-
-      if (search) {
-        newUrl = formUrlQuery({
-          params,
-          key: 'query',
-          value: search,
-        });
-      } else {
-        newUrl = formUrlQuery({
-          params,
-          keysToRemove: ['query'],
-        });
-      }
+    const updateSearchParams = () => {
+      const currentParams = searchParams?.toString() || '';
+      const newUrl = search
+        ? formUrlQuery({ params: currentParams, key: 'query', value: search })
+        : formUrlQuery({ params: currentParams, keysToRemove: ['query'] });
 
       router.push(newUrl, { scroll: false });
-    }, 300);
+    };
 
-    return () => clearTimeout(delayDebounceFn);
+    const debounce = setTimeout(updateSearchParams, 300);
+    return () => clearTimeout(debounce);
   }, [search, searchParams, router]);
 
   return (
@@ -42,17 +32,17 @@ const SearchForm = () => {
       <label className="flex-center relative w-full max-w-3xl">
         <Image
           src="/magnifying-glass.svg"
+          alt="Search icon"
           className="absolute left-8"
           width={32}
           height={32}
-          alt="Search icon"
         />
         <Input
-          className="base-regular h-fit border-0 bg-black-400 py-6 pl-20 pr-8 text-white-800 !ring-0 !ring-offset-0 placeholder:text-white-800"
           type="text"
           placeholder="Search"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
+          className="base-regular h-fit border-0 bg-black-400 py-6 pl-20 pr-8 text-white-800 !ring-0 !ring-offset-0 placeholder:text-white-800"
         />
       </label>
     </form>

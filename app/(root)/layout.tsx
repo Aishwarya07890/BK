@@ -1,16 +1,18 @@
-import React from 'react'
+import { NextPage } from 'next';
 
-import Footer from '@/components/Footer'
-import Navbar from '@/components/Navbar'
-
-const layout = ({ children }: { children: React.ReactNode }) => {
-  return (
-    <>
-      <Navbar />
-      {children}
-      <Footer />
-    </>
-  )
+interface LayoutProps {
+  children: React.ReactNode;
+  searchParams?: { [key: string]: string | undefined };
 }
 
-export default layout
+const RootLayout: NextPage<LayoutProps> = ({ children, searchParams }) => {
+  return (
+    <html lang="en">
+      <body>
+        {children}
+      </body>
+    </html>
+  );
+};
+
+export default RootLayout;
