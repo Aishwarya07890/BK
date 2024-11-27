@@ -15,17 +15,18 @@ const SearchForm = () => {
 
   useEffect(() => {
     const delayDebounceFn = setTimeout(() => {
+      const params = searchParams?.toString() || '';
       let newUrl = '';
 
       if (search) {
         newUrl = formUrlQuery({
-          params: searchParams.toString(),
+          params,
           key: 'query',
           value: search,
         });
       } else {
         newUrl = formUrlQuery({
-          params: searchParams.toString(),
+          params,
           keysToRemove: ['query'],
         });
       }
